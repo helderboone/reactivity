@@ -8,33 +8,40 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
-  [Route("api/[controller]")]
-  [ApiController]
-  public class ActivitiesController : ControllerBase
-  {
-    private readonly IMediator _mediator;
-
-    public ActivitiesController(IMediator mediator)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ActivitiesController : ControllerBase
     {
-      _mediator = mediator;
-    }
+        private readonly IMediator _mediator;
 
-    [HttpGet]
-    public async Task<ActionResult<List<Activity>>> List()
-    {
-      return await _mediator.Send(new List.Query());
-    }
+        public ActivitiesController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Activity>> Details(Guid id)
-    {
-      return await _mediator.Send(new Details.Query { Id = id });
-    }
+        [HttpGet]
+        public async Task<ActionResult<List<Activity>>> List()
+        {
+            return await _mediator.Send(new List.Query());
+        }
 
-    [HttpPost]
-    public async Task<ActionResult<Unit>> Create(Create.Command command)
-    {
-      return await _mediator.Send(command);
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Activity>> Details(Guid id)
+        {
+            return await _mediator.Send(new Details.Query { Id = id });
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Unit>> Create(Create.Command command)
+        {
+            return await _mediator.Send(command);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Unit>> Edit(Guid id, Edit.Command command)
+        {
+            command.Id = id;
+            return await _mediator.Send(command);
+        }
     }
-  }
 }
