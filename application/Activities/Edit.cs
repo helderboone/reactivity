@@ -1,10 +1,10 @@
 using MediatR;
-using persistence;
+using Persistence;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace application.Activities
+namespace Application.Activities
 {
     public class Edit
     {

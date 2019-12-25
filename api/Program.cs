@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using persistence;
+using Persistence;
 using System;
 
-namespace api
+namespace API
 {
     public class Program
     {

@@ -2,10 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using persistence;
 
-namespace persistence.Migrations
+namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
     [Migration("20191212170804_InitialCreate")]

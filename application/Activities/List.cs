@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using domain;
+using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using persistence;
+using Persistence;
 
-namespace application.Activities
+namespace Application.Activities
 {
   public class List
   {

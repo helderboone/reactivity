@@ -1,12 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\domain\domain.csproj"/>
-    <ProjectReference Include="..\persistence\persistence.csproj"/>
+    <ProjectReference Include="..\domain\domain.csproj" />
+    <ProjectReference Include="..\persistence\persistence.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0"/>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Application</AssemblyName>
+    <RootNamespace>Application</RootNamespace>
   </PropertyGroup>
 </Project>
