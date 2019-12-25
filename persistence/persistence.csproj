@@ -1,12 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\domain\domain.csproj"/>
+    <ProjectReference Include="..\domain\domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.0"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.0" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Persistence</AssemblyName>
+    <RootNamespace>Persistence</RootNamespace>
   </PropertyGroup>
 </Project>

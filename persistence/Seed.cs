@@ -1,9 +1,9 @@
-using domain;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace persistence
+namespace Persistence
 {
     public class Seed
     {

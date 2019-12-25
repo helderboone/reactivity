@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using domain;
+using Domain;
 
-namespace persistence
+namespace Persistence
 {
     public class DataContext : DbContext
     {

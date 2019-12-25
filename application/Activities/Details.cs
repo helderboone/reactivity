@@ -1,11 +1,11 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using domain;
+using Domain;
 using MediatR;
-using persistence;
+using Persistence;
 
-namespace application.Activities
+namespace Application.Activities
 {
   public class Details
   {

@@ -1,11 +1,11 @@
-﻿using domain;
+﻿using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using persistence;
+using Persistence;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace api.Controllers
+namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
