@@ -6,4 +6,12 @@
     <RootNamespace>Infrastructure</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\application\application.csproj" />
+  </ItemGroup>
+
 </Project>
