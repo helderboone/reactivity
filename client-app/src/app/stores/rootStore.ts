@@ -1,0 +1,16 @@
+import ActivityStore from './activityStore';
+import UserStore from './userStore';
+import { createContext } from 'react';
+
+export class RootStore {
+    constructor()
+    {
+        this.activityStore = new ActivityStore(this);
+        this.userStore = new UserStore(this);
+    }
+
+    activityStore: ActivityStore;
+    userStore: UserStore;
+}
+
+export const RootStoreContext = createContext(new RootStore());
