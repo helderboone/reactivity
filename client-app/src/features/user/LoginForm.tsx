@@ -6,6 +6,7 @@ import { RootStoreContext } from "../../app/stores/rootStore";
 import { IUserFormValues } from "../../app/models/user";
 import { FORM_ERROR } from "final-form";
 import { combineValidators, isRequired } from "revalidate";
+import ErrorMessage from "../../app/common/form/ErrorMessage";
 
 const validate = combineValidators({
   email: isRequired("email"),
@@ -31,8 +32,13 @@ const LoginForm = () => {
         pristine,
         dirtySinceLastSubmit
       }) => (
-        <Form onSubmit={handleSubmit}>
-          <Header as='h2' content='Login to Reactivities' color='teal' textAlign='center' />
+        <Form onSubmit={handleSubmit} error>
+          <Header
+            as="h2"
+            content="Login to Reactivities"
+            color="teal"
+            textAlign="center"
+          />
           <Field name="email" component={TextInput} placeholder="Email" />
           <Field
             name="password"
@@ -41,12 +47,15 @@ const LoginForm = () => {
             type="password"
           />
           {submitError && !dirtySinceLastSubmit && (
-            <Label color="red" basic content={submitError.statusText} />
+            <ErrorMessage
+              error={submitError}
+              text="Invalid email or password"
+            />
           )}
           <Button
             disabled={(invalid && !dirtySinceLastSubmit) || pristine}
             loading={submitting}
-            color='teal'
+            color="teal"
             content="Login"
             fluid
           />
