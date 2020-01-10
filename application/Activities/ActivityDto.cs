@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace Application.Activities
 {
-    class ActivityDto
+    public class ActivityDto
     {
         public Guid Id { get; set; }
 
@@ -19,6 +20,7 @@ namespace Application.Activities
 
         public string Venue { get; set; }
 
-        public ICollection<AttendeeDto> AttendeeDtos { get; set; }
+        [JsonProperty("attendees")]
+        public ICollection<AttendeeDto> UserActivities { get; set; }
     }
 }
