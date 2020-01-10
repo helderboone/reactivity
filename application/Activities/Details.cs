@@ -32,7 +32,7 @@ namespace Application.Activities
             public async Task<ActivityDto> Handle(Query request, CancellationToken cancellationToken)
             {
                 var activity = await _context.Activities                    
-                    .SingleOrDefaultAsync(x => x.Id == request.Id);
+                    .FindAsync(request.Id);
 
                 if (activity == null)
                     throw new RestException(HttpStatusCode.NotFound, new { activity = "Could not find activity" });
