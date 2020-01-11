@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Segment, List, Item, Label, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { IAttendee } from "../../../app/models/activity";
+import { observer } from "mobx-react-lite";
 
 interface IPros {
   attendess: IAttendee[];
@@ -50,4 +51,4 @@ const ActivityDetailedSidebar: React.FC<IPros> = ({ attendess }) => {
     </Fragment>
   );
 };
-export default ActivityDetailedSidebar;
+export default observer(ActivityDetailedSidebar);
