@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Tab, Header, Card, Image, Button, Grid } from "semantic-ui-react";
 import { RootStoreContext } from "../../app/stores/rootStore";
+import PhotoUploadWidget from "../../app/common/photoUpload/PhotoUploadWidget";
 
 const ProfilePhotos = () => {
   const rootStore = useContext(RootStoreContext);
   const { profile, isCurrentUser } = rootStore.profileStore;
-  const [addPhotoMode, setAddPhotoMode] = useState(false);
+  const [addPhotoMode, setAddPhotoMode] = useState(true);
 
   return (
     <Tab.Pane>
@@ -23,7 +24,7 @@ const ProfilePhotos = () => {
         </Grid.Column>
         <Grid.Column width={16}>
           {addPhotoMode ? (
-            <p>Photo wifget will go here</p>
+            <PhotoUploadWidget />
           ) : (
             <Card.Group itemsPerRow={5}>
               {profile &&
