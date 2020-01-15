@@ -1,4 +1,5 @@
 ﻿using API.Middlewares;
+using API.SignalR;
 using Application.Activities;
 using Application.Interfaces;
 using AutoMapper;
@@ -20,6 +21,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Persistence;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace API
 {
@@ -35,7 +37,7 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(opt => 
+            services.AddMvc(opt =>
             {
                 //All endpoints are proctected with policy that check if the user is authenticated
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
@@ -90,6 +92,19 @@ namespace API
                         IssuerSigningKey = key,
                         ValidateAudience = false,
                         ValidateIssuer = false,
+                    };
+                    opt.Events = new JwtBearerEvents
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            var accessToken = context.Request.Query["access_token"];
+                            var path = context.HttpContext.Request.Path;
+                            if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/chat"))
+                            {
+                                context.Token = accessToken;
+                            }
+                            return Task.CompletedTask;
+                        }
                     };
                 });
 
