@@ -141,6 +141,7 @@ export default class ActivityStore {
       let attendees = [];
       attendees.push(attendee);
       activity.attendees = attendees;
+      activity.comments = [];
       activity.isHost = true;
       runInAction("creating activity", () => {
         this.activityRegistry.set(activity.id, activity);
