@@ -57,6 +57,7 @@ namespace API
 
             services.AddMediatR(typeof(List.Handler).Assembly);
             services.AddAutoMapper(typeof(List.Handler));
+            services.AddSignalR();
             services.AddDbContext<DataContext>(opt =>
             {
                 opt.UseLazyLoadingProxies();
@@ -105,6 +106,7 @@ namespace API
             // app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseCors("CorsPolicy");
+            app.UseSignalR(routes => { routes.MapHub<ChatHub>("/chat"); });
             app.UseMvc();
         }
     }
