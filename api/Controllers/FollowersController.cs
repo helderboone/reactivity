@@ -12,6 +12,12 @@ namespace API.Controllers
         public async Task<ActionResult<Unit>> Follow(string username)
         {
             return await Mediator.Send(new Add.Command { Username = username });
-        }        
+        }
+
+        [HttpDelete("{username}/follow")]
+        public async Task<ActionResult<Unit>> UnFollow(string username)
+        {
+            return await Mediator.Send(new Delete.Command { Username = username });
+        }
     }
 }
