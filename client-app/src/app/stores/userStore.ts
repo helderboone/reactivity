@@ -3,6 +3,7 @@ import { IUser, IUserFormValues } from "../models/user";
 import agent from "../api/agent";
 import { RootStore } from "./rootStore";
 import { history } from "../..";
+import { toast } from "react-toastify";
 
 export default class UserStore {
   rootStore: RootStore;
@@ -47,6 +48,7 @@ export default class UserStore {
       const user = await agent.User.register(values);
       this.rootStore.commonStore.setToken(user.token);
       this.rootStore.modalStore.closeModal();
+      toast.success(`${user.displayName} registered with success`)
       history.push('/activities');
     } catch (error) {
       throw error;
