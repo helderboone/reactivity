@@ -38,7 +38,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
   return (
     <Fragment>
       <ModalContainer />
-      <ToastContainer position="bottom-right" />
+      <ToastContainer position="top-right" />
       <Route exact path="/" component={HomePage} />
       <Route
         path={"/(.+)"}
