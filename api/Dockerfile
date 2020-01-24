@@ -22,13 +22,6 @@ COPY ["application/application.csproj", "src/application/"]
 COPY ["domain/domain.csproj", "src/domain/"]
 COPY ["infrastructure/infrastructure.csproj", "src/infrastructure/"]
 COPY ["persistence/persistence.csproj", "src/persistence/"]
-COPY ["client-app/", "src/client-app/"]
-
-RUN cd /src/src/api && mkdir wwwroot
-
-RUN cd /src/src/client-app \
-    && npm install && npm run build
-
 
 COPY . .
 WORKDIR "/src/api"
@@ -38,6 +31,13 @@ RUN dotnet build "api.csproj" -c Release -o /app
 FROM build AS publish
 
 RUN dotnet publish "api.csproj" -c Release -o /app
+
+COPY ["client-app/", "/app/client-app"]
+
+RUN cd /app/client-app \
+    && npm install && npm run build && mv build ../
+
+RUN mv /app/build /app/wwwroot/
 
 FROM base AS final
 WORKDIR /app
