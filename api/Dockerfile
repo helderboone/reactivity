@@ -37,7 +37,7 @@ COPY ["client-app/", "/app/client-app"]
 RUN cd /app/client-app \
     && npm install && npm run build && mv build ../
 
-RUN mv /app/build /app/wwwroot/
+RUN mv /app/build /app/wwwroot/ && rm -R /app/client-app
 
 FROM base AS final
 WORKDIR /app
