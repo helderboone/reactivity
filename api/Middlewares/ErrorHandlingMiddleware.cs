@@ -1,9 +1,9 @@
 ﻿using Application.Errors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using System;
 using System.Net;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace API.Middlewares
@@ -53,7 +53,7 @@ namespace API.Middlewares
 
             if (errors != null)
             {
-                var result = JsonConvert.SerializeObject(new { errors });
+                var result = JsonSerializer.Serialize(new { errors });
 
                 await context.Response.WriteAsync(result);
             }            

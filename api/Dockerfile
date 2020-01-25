@@ -1,19 +1,19 @@
-FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS base
 
 WORKDIR /app
 
 EXPOSE 80
 EXPOSE 443
 
-FROM microsoft/dotnet:2.2-sdk AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
 
 # Setup NodeJs
 RUN apt-get -qq update && \
-    apt-get -qq install -y wget && \
-    apt-get -qq install -y gnupg2 && \
-    wget -qO- https://deb.nodesource.com/setup_10.x | bash - && \
-    apt-get -qq install -y build-essential nodejs && \
-    apt-get -qq install -y nginx
+  apt-get -qq install -y wget && \
+  apt-get -qq install -y gnupg2 && \
+  wget -qO- https://deb.nodesource.com/setup_10.x | bash - && \
+  apt-get -qq install -y build-essential nodejs && \
+  apt-get -qq install -y nginx
 # End setup
 
 WORKDIR /src
@@ -35,9 +35,9 @@ RUN dotnet publish "api.csproj" -c Release -o /app
 COPY ["client-app/", "/app/client-app"]
 
 RUN cd /app/client-app \
-    && npm install && npm run build && mv build ../
+  && npm install && npm run build && mv build ../
 
-RUN mv /app/build /app/wwwroot/ && rm -R /app/client-app
+RUN cd /app/ && cp -a /app/build/. /app/wwwroot/ && rm -R /app/client-app
 
 FROM base AS final
 WORKDIR /app
